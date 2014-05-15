@@ -1,0 +1,22 @@
+{
+  "name": "arduino",
+  "version": "0.0.0",
+  "description": "a site to help me to study arduino, gulp and more",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "connect-livereload": "^0.4.0",
+    "express": "^4.2.0",
+    "gulp": "^3.6.2",
+    "tiny-lr": "^0.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "arduino"
+  ],
+  "author": "Gianpaulo M. Soares",
+  "license": "ISC"
+}
