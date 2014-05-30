@@ -31,5 +31,5 @@ function notifyLivereload( event ){
 gulp.task( 'default', function(){
 	startExpress();
 	startLivereload();
-	gulp.watch( '*.html', notifyLivereload );
+	gulp.watch( '**/*.html', notifyLivereload );
 });
