@@ -10,7 +10,9 @@
     "tiny-lr": "^0.0.7",
     "gulp-clean": "^0.3.0",
     "gulp-concat": "^2.2.0",
-    "gulp-uglify": "^0.3.0"
+    "gulp-uglify": "^0.3.0",
+    "gulp-util": "^2.2.14",
+    "gulp-filesize": "^0.0.6"
   },
   "devDependencies": {},
   "scripts": {

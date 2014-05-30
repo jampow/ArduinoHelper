@@ -1,7 +1,9 @@
 var gulp = require( 'gulp' ),
 	clean = require( 'gulp-clean' ),
 	concat = require( 'gulp-concat' ),
-	uglify = require( 'gulp-uglify' );
+	uglify = require( 'gulp-uglify' ),
+	gutil = require( 'gulp-util' )
+	filesize = require( 'gulp-filesize' );
 
 var EXPRESS_PORT = 8000,
 	EXPRESS_ROOT = __dirname,
@@ -46,5 +48,7 @@ gulp.task( 'js', function(){
 	return gulp.src( 'assets/**/*.js' )
 		.pipe( concat( 'main.js' ) )
 		.pipe( uglify() )
-		.pipe( gulp.dest( 'build/assets/js' ) );
+		.pipe( gulp.dest( 'build/assets/js' ) )
+		.pipe( filesize() )
+		.on( 'error', gutil.log );
 });
