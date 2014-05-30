@@ -1,4 +1,5 @@
-var gulp = require( 'gulp' );
+var gulp = require( 'gulp' ),
+	clean = require( 'gulp-clean' );
 
 var EXPRESS_PORT = 8000,
 	EXPRESS_ROOT = __dirname,
@@ -32,4 +33,8 @@ gulp.task( 'default', function(){
 	startExpress();
 	startLivereload();
 	gulp.watch( '**/*.html', notifyLivereload );
+});
+
+gulp.task( 'clean', function(){
+	return gulp.src( 'build', { read: false } ).pipe( clean() );
 });
