@@ -1,5 +1,6 @@
 var gulp = require( 'gulp' ),
-	clean = require( 'gulp-clean' );
+	clean = require( 'gulp-clean' ),
+	concat = require( 'gulp-concat' );
 
 var EXPRESS_PORT = 8000,
 	EXPRESS_ROOT = __dirname,
@@ -36,5 +37,12 @@ gulp.task( 'default', function(){
 });
 
 gulp.task( 'clean', function(){
-	return gulp.src( 'build', { read: false } ).pipe( clean() );
+	return gulp.src( 'build', { read: false } )
+		.pipe( clean() );
+});
+
+gulp.task( 'js', function(){
+	return gulp.src( 'assets/**/*.js' )
+		.pipe( concat( 'main.js' ) )
+		.pipe( gulp.dest( 'build/assets/js' ) );
 });
