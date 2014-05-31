@@ -8,7 +8,7 @@ var gulp = require( 'gulp' ),
 	path = require( 'path' );
 
 var EXPRESS_PORT = 8000,
-	EXPRESS_ROOT = __dirname,
+	EXPRESS_ROOT = __dirname + '/build',
 	LIVERELOAD_PORT = 35729,
 	lr;
 
