@@ -1,1 +1,11 @@
-{ "teste": "teste" }
+{ 
+	"globals": {
+		"title": "Arduino Helper",
+		"javascript": [
+			"/assets/js/main.js"
+		],
+		"styles": [
+			"/assets/css/main.css"
+		]
+	} 
+}

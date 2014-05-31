@@ -2,7 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>teste</title>
+	<title>{{globals.title}}</title>
+
+	{{#globals.javascript}}
+		<script type="text/javascript" src="{{{.}}}"></script>
+	{{/globals.javascript}}
+	
+	{{#globals.styles}}
+		<link rel="stylesheet" href="{{{.}}}">
+	{{/globals.styles}}
+
 </head>
 <body>
 	{{teste}}
