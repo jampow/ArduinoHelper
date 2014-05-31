@@ -38,7 +38,9 @@ function notifyLivereload( event ){
 gulp.task( 'default', function(){
 	startExpress();
 	startLivereload();
-	gulp.watch( '**/*.html', notifyLivereload );
+	gulp.watch( 'assets/less/**/*.less', ['css'] );
+	gulp.watch( 'assets/js/**/*.js', ['js'] );
+	gulp.watch( 'build/**/*.*', notifyLivereload );
 });
 
 gulp.task( 'clean', function(){
@@ -47,7 +49,7 @@ gulp.task( 'clean', function(){
 });
 
 gulp.task( 'js', function(){
-	return gulp.src( 'assets/**/*.js' )
+	return gulp.src( 'assets/js/**/*.js' )
 		.pipe( concat( 'main.js' ) )
 		.pipe( uglify() )
 		.pipe( gulp.dest( 'build/assets/js' ) )
@@ -57,6 +59,7 @@ gulp.task( 'js', function(){
 
 gulp.task( 'css', function(){
 	return gulp.src( 'assets/less/**/*.less' )
+		.pipe( concat( 'main.css' ) )
 		.pipe( less( {
 			paths: [ path.join( __dirname, 'less', 'includes' ) ]
 		}))
