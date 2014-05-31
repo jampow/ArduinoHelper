@@ -2,8 +2,10 @@ var gulp = require( 'gulp' ),
 	clean = require( 'gulp-clean' ),
 	concat = require( 'gulp-concat' ),
 	uglify = require( 'gulp-uglify' ),
-	gutil = require( 'gulp-util' )
-	filesize = require( 'gulp-filesize' );
+	gutil = require( 'gulp-util' ),
+	filesize = require( 'gulp-filesize' ),
+	less = require( 'gulp-less' ),
+	path = require( 'path' );
 
 var EXPRESS_PORT = 8000,
 	EXPRESS_ROOT = __dirname,
@@ -49,6 +51,16 @@ gulp.task( 'js', function(){
 		.pipe( concat( 'main.js' ) )
 		.pipe( uglify() )
 		.pipe( gulp.dest( 'build/assets/js' ) )
+		.pipe( filesize() )
+		.on( 'error', gutil.log );
+});
+
+gulp.task( 'css', function(){
+	return gulp.src( 'assets/less/**/*.less' )
+		.pipe( less( {
+			paths: [ path.join( __dirname, 'less', 'includes' ) ]
+		}))
+		.pipe( gulp.dest( 'build/css' ) )
 		.pipe( filesize() )
 		.on( 'error', gutil.log );
 });
