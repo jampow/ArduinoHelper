@@ -5,7 +5,8 @@ var gulp = require( 'gulp' ),
 	gutil = require( 'gulp-util' ),
 	filesize = require( 'gulp-filesize' ),
 	less = require( 'gulp-less' ),
-	path = require( 'path' );
+	path = require( 'path' ),
+	mustache = require( 'gulp-mustache' );
 
 var EXPRESS_PORT = 8000,
 	EXPRESS_ROOT = __dirname + '/build',
@@ -38,6 +39,7 @@ function notifyLivereload( event ){
 gulp.task( 'default', function(){
 	startExpress();
 	startLivereload();
+	gulp.watch( 'interface/**/*.{mustache,json}', ['tpl'] );
 	gulp.watch( 'assets/less/**/*.less', ['css'] );
 	gulp.watch( 'assets/js/**/*.js', ['js'] );
 	gulp.watch( 'build/**/*.*', notifyLivereload );
@@ -66,4 +68,12 @@ gulp.task( 'css', function(){
 		.pipe( gulp.dest( 'build/css' ) )
 		.pipe( filesize() )
 		.on( 'error', gutil.log );
+});
+
+gulp.task( 'tpl', function(){
+	return gulp.src( 'interface/*.mustache')
+		.pipe( mustache( 'interface/_data.json' ) )
+		.pipe( gulp.dest( 'build' ) )
+		.pipe( filesize() )
+		.on( 'error', gutil.log )
 });
