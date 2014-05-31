@@ -40,8 +40,8 @@ gulp.task( 'default', [ 'build' ], function(){
 	startExpress();
 	startLivereload();
 	gulp.watch( 'interface/**/*.{mustache,json}', ['tpl'] );
-	gulp.watch( 'assets/less/**/*.less', ['css'] );
-	gulp.watch( 'assets/js/**/*.js', ['js'] );
+	gulp.watch( 'assets/styles/**/*.{less.css}', ['css'] );
+	gulp.watch( 'assets/scripts/**/*.js', ['js'] );
 	gulp.watch( 'build/**/*.*', notifyLivereload );
 });
 
@@ -50,10 +50,10 @@ gulp.task( 'clean', function(){
 		.pipe( clean() );
 });
 
-gulp.task( 'build', [ 'js', 'css', 'tpl' ] )
+gulp.task( 'build', [ 'js', 'less', 'tpl', 'fonts', 'cssVendor', 'jsVendor' ] )
 
 gulp.task( 'js', function(){
-	return gulp.src( 'assets/js/**/*.js' )
+	return gulp.src( 'assets/scripts/*.js' )
 		.pipe( concat( 'main.js' ) )
 		.pipe( uglify() )
 		.pipe( gulp.dest( 'build/assets/js' ) )
@@ -61,8 +61,8 @@ gulp.task( 'js', function(){
 		.on( 'error', gutil.log );
 });
 
-gulp.task( 'css', function(){
-	return gulp.src( 'assets/less/**/*.less' )
+gulp.task( 'less', function(){
+	return gulp.src( 'assets/styles/less/**/*.less' )
 		.pipe( concat( 'main.css' ) )
 		.pipe( less( {
 			paths: [ path.join( __dirname, 'less', 'includes' ) ]
@@ -77,5 +77,26 @@ gulp.task( 'tpl', function(){
 		.pipe( mustache( 'interface/_data.json' ) )
 		.pipe( gulp.dest( 'build' ) )
 		.pipe( filesize() )
-		.on( 'error', gutil.log )
+		.on( 'error', gutil.log );
 });
+
+gulp.task( 'fonts', function(){
+	return gulp.src( 'assets/fonts/*.*')
+		.pipe( gulp.dest( 'build/assets/fonts' ) )
+		.pipe( filesize() )
+		.on( 'error', gutil.log );
+});
+
+gulp.task( 'cssVendor', function(){
+	return gulp.src( 'assets/styles/vendor/*.css' )
+		.pipe( gulp.dest( 'build/assets/css' ) )
+		.pipe( filesize() )
+		.on( 'error', gutil.log );
+});
+
+gulp.task( 'jsVendor', function(){
+	return gulp.src( 'assets/scripts/vendor/*.js' )
+		.pipe( gulp.dest( 'build/assets/js' ) )
+		.pipe( filesize() )
+		.on( 'error', gutil.log );
+})
