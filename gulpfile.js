@@ -36,7 +36,7 @@ function notifyLivereload( event ){
 	});
 }
 
-gulp.task( 'default', function(){
+gulp.task( 'default', [ 'build' ], function(){
 	startExpress();
 	startLivereload();
 	gulp.watch( 'interface/**/*.{mustache,json}', ['tpl'] );
@@ -49,6 +49,8 @@ gulp.task( 'clean', function(){
 	return gulp.src( 'build', { read: false } )
 		.pipe( clean() );
 });
+
+gulp.task( 'build', [ 'js', 'css', 'tpl' ] )
 
 gulp.task( 'js', function(){
 	return gulp.src( 'assets/js/**/*.js' )
@@ -65,7 +67,7 @@ gulp.task( 'css', function(){
 		.pipe( less( {
 			paths: [ path.join( __dirname, 'less', 'includes' ) ]
 		}))
-		.pipe( gulp.dest( 'build/css' ) )
+		.pipe( gulp.dest( 'build/assets/css' ) )
 		.pipe( filesize() )
 		.on( 'error', gutil.log );
 });
