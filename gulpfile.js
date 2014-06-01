@@ -40,7 +40,7 @@ gulp.task( 'default', [ 'build' ], function(){
 	startExpress();
 	startLivereload();
 	gulp.watch( 'interface/**/*.{mustache,json}', ['tpl'] );
-	gulp.watch( 'assets/styles/**/*.{less.css}', ['css'] );
+	gulp.watch( 'assets/styles/**/*.less', ['less'] );
 	gulp.watch( 'assets/scripts/**/*.js', ['js'] );
 	gulp.watch( 'build/**/*.*', notifyLivereload );
 });

@@ -14,29 +14,30 @@
 
 </head>
 <body>
-	
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Cor</th>
-				<th>Primeira faixa</th>
-				<th>Segunda faixa</th>
-				<th>Terceira faixa</th>
-				<th>Quarta faixa</th>
-			</tr>
-		</thead>
-		<tbody>
-			{{#resistor.color-table}}
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
 				<tr>
-					<td>{{color}}</td>
-					<td>{{first}}</td>
-					<td>{{second}}</td>
-					<td>{{#third}}x10{{/third}}<sup>{{{third}}}</sup></td>
-					<td>{{#fourth}}&#177; {{/fourth}}{{fourth}}{{#fourth}}%{{/fourth}}</td>
+					<th>Cor</th>
+					<th>Primeira faixa</th>
+					<th>Segunda faixa</th>
+					<th>Terceira faixa</th>
+					<th>Quarta faixa</th>
 				</tr>
-			{{/resistor.color-table}}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{{#resistor.color-table}}
+					<tr>
+						<td class="{{class}}">{{name}}</td>
+						<td>{{first}}</td>
+						<td>{{second}}</td>
+						<td>{{#third}}x10{{/third}}<sup>{{{third}}}</sup></td>
+						<td>{{#fourth}}&#177; {{/fourth}}{{fourth}}{{#fourth}}%{{/fourth}}</td>
+					</tr>
+				{{/resistor.color-table}}
+			</tbody>
+		</table>
+	</div>
 
 </body>
 </html>
